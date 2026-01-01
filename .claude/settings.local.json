@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\MSBuild.exe\" \"C:\\Users\\minio\\source\\repos\\AutoNAVSearchSets\\AutoNAVSearchSets.sln\" /t:Rebuild /p:Configuration=Release)",
+      "Bash(where:*)"
+    ]
+  }
+}

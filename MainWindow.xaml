@@ -1,0 +1,289 @@
+<Window x:Class="AutoNAVSearchSets.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AutoNav SearchSets - Automatic Search Set Creation"
+        Height="700" Width="900"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize"
+        Background="#F5F5F5">
+
+    <Window.Resources>
+        <Style x:Key="HeaderTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#2C3E50"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+        </Style>
+
+        <Style x:Key="SubHeaderTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#34495E"/>
+            <Setter Property="Margin" Value="0,5,0,5"/>
+        </Style>
+
+        <Style x:Key="DescriptionTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Foreground" Value="#7F8C8D"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+        </Style>
+
+        <Style x:Key="ActionButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#3498DB"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="20,10"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="4"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#2980B9"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#BDC3C7"/>
+                    <Setter Property="Cursor" Value="Arrow"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="GroupBoxStyle" TargetType="GroupBox">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#BDC3C7"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="0,0,0,15"/>
+            <Setter Property="Padding" Value="15"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <TextBlock Text="AutoNav SearchSets"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Foreground="#2C3E50"
+                       Margin="0,0,0,5"/>
+            <TextBlock Text="Automated Search Set Creation for Navisworks"
+                       FontSize="12"
+                       Foreground="#95A5A6"/>
+        </StackPanel>
+
+        <!-- Main Content -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+
+                <!-- Function 1: Discipline Search Sets -->
+                <GroupBox Style="{StaticResource GroupBoxStyle}">
+                    <GroupBox.Header>
+                        <TextBlock Text="FUNCTION 1: Discipline Search Sets"
+                                   Style="{StaticResource HeaderTextStyle}"
+                                   Margin="0"/>
+                    </GroupBox.Header>
+
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource DescriptionTextStyle}">
+                            <Run FontWeight="SemiBold">Purpose:</Run>
+                            <Run>Creates search sets organized by discipline based on file naming patterns.</Run>
+                        </TextBlock>
+
+                        <TextBlock Style="{StaticResource DescriptionTextStyle}">
+                            <Run FontWeight="SemiBold">How it works:</Run>
+                            <Run>Scans the selection tree for files containing discipline identifiers (e.g., _ARCH_, _STRC_, _MEP_) and automatically creates a search set folder "1. DISCIPLINES" containing a search set for each unique discipline found.</Run>
+                        </TextBlock>
+
+                        <Border Background="#ECF0F1"
+                                Padding="12"
+                                CornerRadius="4"
+                                Margin="0,5,0,15">
+                            <StackPanel>
+                                <TextBlock FontSize="11" Foreground="#2C3E50" FontWeight="SemiBold">
+                                    Example:
+                                </TextBlock>
+                                <TextBlock FontSize="10" Foreground="#34495E" Margin="10,5,0,0">
+                                    Files: PROJ_ARCH_L01.nwc, PROJ_STRC_L01.nwc
+                                </TextBlock>
+                                <TextBlock FontSize="10" Foreground="#34495E" Margin="10,2,0,0">
+                                    Result: Creates "ARCH" and "STRC" search sets under "1. DISCIPLINES" folder
+                                </TextBlock>
+                            </StackPanel>
+                        </Border>
+
+                        <Button x:Name="btnCreateDisciplineSets"
+                                Content="Create Discipline Search Sets"
+                                Style="{StaticResource ActionButtonStyle}"
+                                Click="BtnCreateDisciplineSets_Click"
+                                HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Function 2: Element Category Search Sets -->
+                <GroupBox Style="{StaticResource GroupBoxStyle}">
+                    <GroupBox.Header>
+                        <TextBlock Text="FUNCTION 2: Element Category Search Sets"
+                                   Style="{StaticResource HeaderTextStyle}"
+                                   Margin="0"/>
+                    </GroupBox.Header>
+
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource DescriptionTextStyle}">
+                            <Run FontWeight="SemiBold">Purpose:</Run>
+                            <Run>Creates search sets for each element category found within discipline search sets.</Run>
+                        </TextBlock>
+
+                        <TextBlock Style="{StaticResource DescriptionTextStyle}">
+                            <Run FontWeight="SemiBold">How it works:</Run>
+                            <Run>Scans elements within each discipline search set and creates organized search sets based on the selected parameter (Category, System Name, etc.) under a "2. CLASH SETS" folder structure.</Run>
+                        </TextBlock>
+
+                        <Border Background="#ECF0F1"
+                                Padding="12"
+                                CornerRadius="4"
+                                Margin="0,5,0,15">
+                            <StackPanel>
+                                <TextBlock FontSize="11" Foreground="#2C3E50" FontWeight="SemiBold">
+                                    Example:
+                                </TextBlock>
+                                <TextBlock FontSize="10" Foreground="#34495E" Margin="10,5,0,0">
+                                    Within "ARCH" discipline: Doors, Floors, Walls
+                                </TextBlock>
+                                <TextBlock FontSize="10" Foreground="#34495E" Margin="10,2,0,0">
+                                    Result: Creates individual search sets for Doors, Floors, and Walls under "2. CLASH SETS/ARCH"
+                                </TextBlock>
+                            </StackPanel>
+                        </Border>
+
+                        <TextBlock Style="{StaticResource SubHeaderTextStyle}">
+                            Select Parameter to Organize By:
+                        </TextBlock>
+
+                        <StackPanel Margin="10,5,0,15">
+                            <RadioButton x:Name="rbCategory"
+                                       Content="Element Category"
+                                       IsChecked="True"
+                                       FontSize="12"
+                                       Margin="0,5,0,5"
+                                       GroupName="ElementParameter"/>
+                            <TextBlock Text="Groups by Revit category (Walls, Doors, Floors, etc.)"
+                                     FontSize="10"
+                                     Foreground="#7F8C8D"
+                                     Margin="20,0,0,10"/>
+
+                            <RadioButton x:Name="rbSystemName"
+                                       Content="System Name"
+                                       FontSize="12"
+                                       Margin="0,5,0,5"
+                                       GroupName="ElementParameter"/>
+                            <TextBlock Text="Groups by system name (e.g., Chilled Water, Domestic Hot Water)"
+                                     FontSize="10"
+                                     Foreground="#7F8C8D"
+                                     Margin="20,0,0,10"/>
+
+                            <RadioButton x:Name="rbSystemClassification"
+                                       Content="System Classification"
+                                       FontSize="12"
+                                       Margin="0,5,0,5"
+                                       GroupName="ElementParameter"/>
+                            <TextBlock Text="Groups by system classification type"
+                                     FontSize="10"
+                                     Foreground="#7F8C8D"
+                                     Margin="20,0,0,10"/>
+
+                            <RadioButton x:Name="rbWorkset"
+                                       Content="Workset"
+                                       FontSize="12"
+                                       Margin="0,5,0,5"
+                                       GroupName="ElementParameter"/>
+                            <TextBlock Text="Groups by Revit workset assignment"
+                                     FontSize="10"
+                                     Foreground="#7F8C8D"
+                                     Margin="20,0,0,10"/>
+
+                            <RadioButton x:Name="rbFamilyType"
+                                       Content="Family Type"
+                                       FontSize="12"
+                                       Margin="0,5,0,5"
+                                       GroupName="ElementParameter"/>
+                            <TextBlock Text="Groups by Revit family and type name"
+                                     FontSize="10"
+                                     Foreground="#7F8C8D"
+                                     Margin="20,0,0,10"/>
+                        </StackPanel>
+
+                        <Button x:Name="btnCreateElementSets"
+                                Content="Create Element Search Sets"
+                                Style="{StaticResource ActionButtonStyle}"
+                                Click="BtnCreateElementSets_Click"
+                                HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </GroupBox>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Footer -->
+        <Border Grid.Row="2"
+                Background="White"
+                BorderBrush="#BDC3C7"
+                BorderThickness="0,1,0,0"
+                Padding="0,15,0,0"
+                Margin="0,15,0,0">
+            <StackPanel>
+                <TextBlock x:Name="txtStatus"
+                          Text="Ready"
+                          FontSize="11"
+                          Foreground="#27AE60"
+                          FontWeight="SemiBold"
+                          HorizontalAlignment="Center"
+                          Margin="0,0,0,10"/>
+
+                <Button Content="Close"
+                        Width="100"
+                        Height="35"
+                        Background="#95A5A6"
+                        Foreground="White"
+                        FontSize="12"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Click="BtnClose_Click"
+                        HorizontalAlignment="Center">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                                    CornerRadius="4">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#7F8C8D"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
