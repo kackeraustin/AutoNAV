@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoNav SearchSets v1.3.1 - Documentation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #2C3E50;
+            border-bottom: 3px solid #3498DB;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495E;
+            border-bottom: 2px solid #95A5A6;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #7F8C8D;
+        }
+        .feature {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #3498DB;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .warning {
+            background: #FFF3CD;
+            border-left: 4px solid #FFC107;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .success {
+            background: #D4EDDA;
+            border-left: 4px solid #28A745;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        code {
+            background: #ECF0F1;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Courier New', monospace;
+        }
+        .version {
+            background: #3498DB;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: bold;
+        }
+        ul, ol {
+            margin-left: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498DB;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>AutoNav SearchSets <span class="version">v1.3.1</span></h1>
+    
+    <div class="success">
+        <strong>What's New in v1.3.1:</strong>
+        <ul>
+            <li><strong>Universal Locator Filtering:</strong> ALL parameter types now properly scope searches to source files</li>
+            <li><strong>Function 3 Auto-Discovery:</strong> Automatically creates search sets for ALL unique property values</li>
+            <li><strong>Smart Folder Reuse:</strong> No more duplicate folders when running functions multiple times</li>
+        </ul>
+    </div>
+
+    <h2>Overview</h2>
+    <p>AutoNav SearchSets automates the creation of search sets in Navisworks for clash detection workflows. This plugin dramatically reduces the time spent on manual search set creation from hours to minutes.</p>
+
+    <div class="feature">
+        <h3>Key Benefits</h3>
+        <ul>
+            <li><strong>98% Time Reduction:</strong> Automates manual search set creation</li>
+            <li><strong>Consistent Organization:</strong> Standardized folder structure for clash tests</li>
+            <li><strong>Locator Filtering:</strong> All searches properly scoped to source files</li>
+            <li><strong>Flexible Customization:</strong> Create custom search sets for any property</li>
+        </ul>
+    </div>
+
+    <h2>Three Main Functions</h2>
+
+    <div class="feature">
+        <h3>Function 1: Discipline Search Sets</h3>
+        <p><strong>Purpose:</strong> Creates search sets organized by discipline based on file naming patterns.</p>
+        <p><strong>Example Output:</strong></p>
+        <code>1. DISCIPLINES → ARCH, MEP, STRC, etc.</code>
+        <p><strong>Usage:</strong> Run this first to establish the foundation for Functions 2 and 3.</p>
+    </div>
+
+    <div class="feature">
+        <h3>Function 2: Element Category Search Sets</h3>
+        <p><strong>Purpose:</strong> Creates search sets for each element category found within selected discipline models.</p>
+        <p><strong>Parameters Available:</strong></p>
+        <ul>
+            <li>Element Category (Walls, Doors, Floors, etc.)</li>
+            <li>System Name</li>
+            <li>System Classification</li>
+            <li>Workset</li>
+            <li>Family Type</li>
+        </ul>
+        <p><strong>Example Output:</strong></p>
+        <code>2. CLASH SETS → ARCH → Walls, Doors, Windows</code>
+        <p><strong>✅ v1.3.1 Fix:</strong> ALL parameter types now use locator filtering (not just Category)</p>
+    </div>
+
+    <div class="feature">
+        <h3>Function 3: Custom Search Set Builder (Auto-Discovery)</h3>
+        <p><strong>Purpose:</strong> Automatically creates search sets for ALL unique values of a selected property.</p>
+        <p><strong>Workflow:</strong></p>
+        <ol>
+            <li>Select discipline models</li>
+            <li>Click "🔄 Analyze Properties"</li>
+            <li>Choose Property Category and Property Name</li>
+            <li>Click "Create" - plugin discovers ALL values automatically</li>
+        </ol>
+        <p><strong>Example:</strong> Select "Element → Family" and plugin creates search sets for EVERY family type found</p>
+        <p><strong>✅ v1.3.1 Feature:</strong> No manual input required - full auto-discovery of property values</p>
+    </div>
+
+    <h2>Installation</h2>
+    <ol>
+        <li>Run <code>AutoNavSearchSets_v1.3.1_Setup.exe</code></li>
+        <li>Follow the installation wizard</li>
+        <li>Restart Navisworks Manage 2024</li>
+        <li>Look for "Auto SearchSets" button in the Add-Ins ribbon tab</li>
+    </ol>
+
+    <div class="warning">
+        <strong>System Requirements:</strong>
+        <ul>
+            <li>Navisworks Manage 2024</li>
+            <li>Windows 10/11 (64-bit)</li>
+            <li>.NET Framework 4.8</li>
+        </ul>
+    </div>
+
+    <h2>Quick Start Guide</h2>
+
+    <h3>Step 1: Open Your Coordination Model</h3>
+    <p>Load all discipline models into Navisworks. Ensure file names contain discipline identifiers:</p>
+    <ul>
+        <li><code>PROJECT_ARCH_L01.nwc</code></li>
+        <li><code>PROJECT_MEP_L01.nwc</code></li>
+        <li><code>PROJECT_STRC_L01.nwc</code></li>
+    </ul>
+
+    <h3>Step 2: Create Discipline Search Sets</h3>
+    <ol>
+        <li>Click "Auto SearchSets" in Add-Ins ribbon</li>
+        <li>In Function 1, click "Create Discipline Search Sets"</li>
+        <li>Result: "1. DISCIPLINES" folder with sets for each discipline</li>
+    </ol>
+
+    <h3>Step 3: Create Element Category Sets</h3>
+    <ol>
+        <li>Check which disciplines to process (default: all)</li>
+        <li>Select parameter to organize by (default: Element Category)</li>
+        <li>Click "Create Element Search Sets"</li>
+        <li>Result: "2. CLASH SETS" folder with organized search sets</li>
+    </ol>
+
+    <h3>Step 4 (Optional): Create Custom Sets</h3>
+    <ol>
+        <li>Check which disciplines to analyze</li>
+        <li>Click "🔄 Analyze Properties"</li>
+        <li>Select Property Category (e.g., "Element")</li>
+        <li>Select Property Name (e.g., "Family")</li>
+        <li>Click "Create Custom Search Sets"</li>
+        <li>Result: "3. CUSTOM SETS" folder with auto-discovered values</li>
+    </ol>
+
+    <h2>What's Fixed in v1.3.1</h2>
+
+    <table>
+        <tr>
+            <th>Issue</th>
+            <th>Solution</th>
+        </tr>
+        <tr>
+            <td>Only "Element Category" used locator filtering</td>
+            <td>ALL parameter types now properly scope to source files</td>
+        </tr>
+        <tr>
+            <td>Function 3 required manual value input</td>
+            <td>Auto-discovers ALL unique values automatically</td>
+        </tr>
+        <tr>
+            <td>Running Function 2 multiple times created duplicate folders</td>
+            <td>Smart folder reuse - adds to existing structure</td>
+        </tr>
+    </table>
+
+    <h2>Troubleshooting</h2>
+
+    <h3>Plugin button not appearing</h3>
+    <ul>
+        <li>Verify installation path: <code>C:\ProgramData\Autodesk\ApplicationPlugins\AutoNAVSearchSets.bundle</code></li>
+        <li>Restart Navisworks</li>
+        <li>Check Add-Ins ribbon tab (not Home tab)</li>
+    </ul>
+
+    <h3>"No discipline patterns found" error</h3>
+    <ul>
+        <li>Ensure file names contain discipline identifiers: <code>_ARCH_</code>, <code>_MEP_</code>, <code>_STRC_</code>, etc.</li>
+        <li>Example correct name: <code>PROJECT_ARCH_Level1.nwc</code></li>
+    </ul>
+
+    <h3>Search sets not scoping correctly</h3>
+    <ul>
+        <li>Make sure you're using v1.3.1 (check version in dialog title)</li>
+        <li>Run Function 1 first to create discipline sets</li>
+        <li>Verify search sets have locator tag when exported to XML</li>
+    </ul>
+
+    <h2>Performance Tips</h2>
+    <ul>
+        <li>Function 1: ~5-10 seconds</li>
+        <li>Function 2: ~10-15 seconds per parameter type</li>
+        <li>Function 3: ~30 seconds for comprehensive property discovery</li>
+        <li>Large projects (100+ MB): Allow up to 60 seconds for property scanning</li>
+    </ul>
+
+    <h2>Support</h2>
+    <p>For questions or issues, contact:</p>
+    <ul>
+        <li><strong>Email:</strong> vdc@austin-ind.com</li>
+        <li><strong>Internal:</strong> Contact your VDC Manager</li>
+    </ul>
+
+    <h2>Version History</h2>
+    <table>
+        <tr>
+            <th>Version</th>
+            <th>Date</th>
+            <th>Changes</th>
+        </tr>
+        <tr>
+            <td>1.3.1</td>
+            <td>Jan 2025</td>
+            <td>Universal locator filtering, Function 3 auto-discovery, folder reuse</td>
+        </tr>
+        <tr>
+            <td>1.3.0</td>
+            <td>Jan 2025</td>
+            <td>Structure-based selection, two-stage dropdowns, on-demand scanning</td>
+        </tr>
+        <tr>
+            <td>1.2.0</td>
+            <td>Jan 2025</td>
+            <td>Fixed ribbon integration, comprehensive installer</td>
+        </tr>
+        <tr>
+            <td>1.0.0</td>
+            <td>Jan 2025</td>
+            <td>Initial release</td>
+        </tr>
+    </table>
+
+    <div class="success">
+        <strong>Ready to Use!</strong><br>
+        Click "Auto SearchSets" in the Add-Ins ribbon to get started.
+    </div>
+
+    <hr>
+    <p style="text-align: center; color: #7F8C8D;">
+        <small>AutoNav SearchSets v1.3.1 | ACLP VDC | 2024-2025</small>
+    </p>
+</body>
+</html>

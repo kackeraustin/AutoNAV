@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RibbonRoot xmlns="http://schemas.autodesk.com/navisworks/2011/api/ribbons/">
+  <RibbonPanels>
+    <RibbonPanel Id="ID_AutoNavSearchSets_Panel">
+      <Button Id="ID_AutoNavSearchSets_Button" 
+              Text="Auto SearchSets"
+              LoadedCommand="AutoNAVSearchSets.PluginMain"
+              LargeImage="pack://application:,,,/Autodesk.Navisworks.Api.resources.dll;component/resources/images/ribbon/properties_32.png"
+              ToolTip="Automatically create discipline and element category search sets"
+              LongDescription="Opens the AutoNav SearchSets dialog to create organized search sets for clash detection workflows."/>
+    </RibbonPanel>
+  </RibbonPanels>
+  <Tabs>
+    <Tab Id="ID_AddIns_Tab">
+      <Panels>
+        <Panel RefId="ID_AutoNavSearchSets_Panel"/>
+      </Panels>
+    </Tab>
+  </Tabs>
+</RibbonRoot>

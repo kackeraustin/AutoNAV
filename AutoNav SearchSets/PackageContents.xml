@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ApplicationPackage SchemaVersion="1.0"
+                     AutodeskProduct="Navisworks"
+                     ProductType="Application"
+                     Name="AutoNAVSearchSets"
+                     Description="Automatic Search Set Creation for Navisworks"
+                     AppVersion="1.3.1"
+                     FriendlyVersion="1.3.1"
+                     Author="ACLP VDC"
+                     HelpFile="./Contents/README.html"
+                     ProductCode="{D6EF06A7-AAA6-4301-9519-7B2EEB360001}"
+                     UpgradeCode="{E001CB0B-EB8B-43BF-95D0-DF33D3DC0001}">
+
+  <CompanyDetails Name="ACLP VDC"
+                   Phone=""
+                   Url="https://www.austin-ind.com"
+                   Email="vdc@austin-ind.com"/>
+
+  <Components Description="AutoNav SearchSets Plugin Components">
+    <RuntimeRequirements SeriesMin="Nw21.0" 
+                          SeriesMax="Nw21.9" 
+                          Platform="Nw64" 
+                          OS="Win64"/>
+    <ComponentEntry AppName="AutoNAVSearchSets"
+                     ModuleName="./Contents/AutoNAVSearchSets.dll"
+                     AppDescription="Automatic Search Set Creation Plugin"
+                     LoadOnCommandInvocation="False"
+                     LoadOnRevitStartup="True">
+      <RuntimeRequirements SeriesMin="Nw21.0" 
+                            SeriesMax="Nw21.9" 
+                            Platform="Nw64" 
+                            OS="Win64"/>
+    </ComponentEntry>
+  </Components>
+
+</ApplicationPackage>
